@@ -1,4 +1,4 @@
-![2026-03-12170215-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/317e391f-4f91-47db-90ab-5ad25b9c11c8)# 버튼 잡기 게임 (C# 코딩)
+# 버튼 잡기 게임 (C# 코딩)
 ## 개요
 - C# 프로그래밍 학습
 - 핵심기능: ...
