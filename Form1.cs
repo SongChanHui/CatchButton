@@ -61,7 +61,7 @@ namespace CatchButton
                 }
                 else
                 {
-                    // '아니오'를 누르면 프로그램 종료
+                    // '아니오'를 누르면 프로그램 종료함
                     Application.Exit();
                 }
                 return;
