@@ -28,33 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
+            MyButton = new Button();
             SuspendLayout();
             // 
-            // button1
+            // MyButton
             // 
-            button1.Font = new Font("맑은 고딕", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.Location = new Point(544, 319);
-            button1.Name = "button1";
-            button1.Size = new Size(350, 140);
-            button1.TabIndex = 0;
-            button1.Text = "나를 잡아봐";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            button1.MouseEnter += button1_MouseEnter;
+            MyButton.BackColor = Color.Cyan;
+            MyButton.Font = new Font("휴먼둥근헤드라인", 24F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            MyButton.Location = new Point(544, 266);
+            MyButton.Name = "MyButton";
+            MyButton.Size = new Size(510, 170);
+            MyButton.TabIndex = 0;
+            MyButton.Text = "잡으면 햄버거";
+            MyButton.UseVisualStyleBackColor = false;
+            MyButton.Click += button1_Click;
+            MyButton.MouseEnter += MyButton_MouseEnter;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(14F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1659, 895);
-            Controls.Add(button1);
+            Controls.Add(MyButton);
             Name = "Form1";
+            Text = "버튼 잡기 게임";
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Button button1;
+        private Button MyButton;
     }
 }

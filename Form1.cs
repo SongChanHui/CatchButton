@@ -12,24 +12,20 @@ namespace CatchButton
 
         }
 
-        private void button1_MouseEnter(object sender, EventArgs e)
+        private void MyButton_MouseEnter(object sender, EventArgs e)
         {
-            // 1. 랜덤 숫자를 만들기 위한 도구 준비
-            Random rand = new Random();
-
-            // 2. 버튼이 움직일 수 있는 안전한 최대 범위 계산 
-            // 폼의 전체 너비에서 버튼의 너비를 빼야 버튼이 오른쪽 벽 뚫고 나가지 않음
-            int maxX = this.ClientSize.Width - button1.Width;
-            int maxY = this.ClientSize.Height - button1.Height;
-
-            // 3. 범위 안에서 랜덤한 X, Y 좌표 생성
-            int nextX = rand.Next(0, maxX);
-            int nextY = rand.Next(0, maxY);
-
-            // 4. 버튼의 위치를 새로운 좌표로 이동 
-            button1.Location = new Point(nextX, nextY);
-
-            // 5. 폼 제목에 현재 좌표 실시간 표시 
+            // 1. 난수 생성기 준비
+            Random rd = new Random();
+            // 2. 가용 영역 계산 (버튼이 폼 테두리에 걸리지 않게 보호)
+            // ClientSize는 타이틀 바와 테두리를 제외한 실제 흰 도화지 영역임
+            int maxX = this.ClientSize.Width - MyButton.Width;
+            int maxY = this.ClientSize.Height - MyButton.Height;
+            // 3. 랜덤 좌표 추출 (0 ~ 최대 가용치 사이)
+            int nextX = rd.Next(0, maxX);
+            int nextY = rd.Next(0, maxY);
+            // 4. 위치 할당 (새로운 Point 객체 생성)
+            MyButton.Location = new Point(nextX, nextY);
+            // 5. 시각적 피드백 (폼 제목 표시줄에 좌표 출력)
             this.Text = $"버튼 위치: ({nextX}, {nextY})";
         }
     }
