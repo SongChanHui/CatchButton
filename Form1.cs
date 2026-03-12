@@ -4,9 +4,11 @@ namespace CatchButton
 {
     public partial class Form1 : Form
     {
-        // 게임 점수를 저장할 변수
-        int score = 0; 
-        
+        // 게임 점수를 저장할 변수, 초기 점수 200점 설정
+        int score = 200;      
+        // 놓친 횟수 카운트
+        int missCount = 0;   
+
         public Form1()
         {
             InitializeComponent();
@@ -33,11 +35,42 @@ namespace CatchButton
 
         private void MyButton_MouseEnter(object sender, EventArgs e)
         {
+            // 도망갈 때마다 놓친 횟수 카운트 증가
+            missCount++;
+            //점수 계산: 도망가면 10점 감점 [cite: 80]
+            score -= 10;
+            
+            // 20번 놓치면 게임 오버 처리
+            if (missCount >= 20)
+            {
+                //종료소리
+                System.Media.SystemSounds.Hand.Play();
+                this.Text = "Game Over";
+
+                // YesNo 버튼이 있는 메시지 박스 띄우기
+                DialogResult result = MessageBox.Show(
+                    $"저런. 햄버거를 잡을 수 없습니다.\n최종 점수는 {score}점 입니다.\n다시 도전하시겠습니까?",
+                    "게임 종료",
+                    MessageBoxButtons.YesNo
+                );
+
+                if (result == DialogResult.Yes)
+                {
+                    // '예'를 누르면 게임 리셋
+                    RestartGame();
+                }
+                else
+                {
+                    // '아니오'를 누르면 프로그램 종료
+                    Application.Exit();
+                }
+                return;
+            }
+
             // 도망갈 때 소리 내기 (청각 피드백)
             SystemSounds.Hand.Play();
 
-            //점수 계산: 도망가면 10점 감점 [cite: 80]
-            score -= 10;
+            
 
             // 1. 난수 생성기 준비
             Random rd = new Random();
@@ -57,5 +90,37 @@ namespace CatchButton
             // 5. 시각적 피드백 (폼 제목 표시줄에 점수와 좌표 출력)
             this.Text = $"점수: {score} | 버튼 위치: ({nextX}, {nextY})";
         }
+
+
+        //초기화 함수 생성
+        private void RestartGame()
+        {
+            // 1. 점수와 카운트 초기화
+            score = 200;
+            missCount = 0;
+
+            // 2. 버튼 상태 및 크기 복구
+            MyButton.Enabled = true;
+            MyButton.Size = new Size(510, 170); 
+            MyButton.Font = new Font(MyButton.Font.FontFamily, 24, MyButton.Font.Style); 
+
+            // 3. 이제 원래 커진 버튼 크기를 기준으로 랜덤 위치 계산
+            Random rd = new Random();
+
+            // 가용 영역 계산
+            int maxX = this.ClientSize.Width - MyButton.Width;
+            int maxY = this.ClientSize.Height - MyButton.Height;
+
+            // 랜덤 좌표 생성
+            int nextX = rd.Next(0, maxX);
+            int nextY = rd.Next(0, maxY);
+
+            // 4. 위치 할당
+            MyButton.Location = new Point(nextX, nextY);
+
+            // 5. UI 업데이트
+            this.Text = $"다시 시작! 현재 점수: {score}";
+        }
     }
+
 }
