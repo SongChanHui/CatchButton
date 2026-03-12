@@ -1,3 +1,5 @@
+using System.Media;
+
 namespace CatchButton
 {
     public partial class Form1 : Form
@@ -9,11 +11,18 @@ namespace CatchButton
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // 1. 잡았을 때 소리 내기 (청각 피드백) 
+            System.Media.SystemSounds.Asterisk.Play();
 
+            // 2. 메시지 박스 띄우기 (시각 피드백) 
+            MessageBox.Show("축하합니다. 당신은 햄버거 입니다.");
         }
 
         private void MyButton_MouseEnter(object sender, EventArgs e)
         {
+            // 도망갈 때 소리 내기 (청각 피드백)
+            SystemSounds.Hand.Play();
+
             // 1. 난수 생성기 준비
             Random rd = new Random();
            

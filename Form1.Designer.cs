@@ -34,12 +34,12 @@
             // MyButton
             // 
             MyButton.BackColor = Color.Cyan;
-            MyButton.Font = new Font("휴먼둥근헤드라인", 24F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            MyButton.Font = new Font("휴먼둥근헤드라인", 24F, FontStyle.Regular, GraphicsUnit.Point, 129);
             MyButton.Location = new Point(544, 266);
             MyButton.Name = "MyButton";
             MyButton.Size = new Size(510, 170);
             MyButton.TabIndex = 0;
-            MyButton.Text = "잡으면 햄버거";
+            MyButton.Text = "잡으면 햄버거\r\n";
             MyButton.UseVisualStyleBackColor = false;
             MyButton.Click += button1_Click;
             MyButton.MouseEnter += MyButton_MouseEnter;
